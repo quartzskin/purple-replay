@@ -1,0 +1,27 @@
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.45 system-ui, sans-serif; }
+header { padding: 12px 20px; border-bottom: 1px solid #aaa; }
+h1 { margin: 0; font-size: 20px; }
+h2 { font-size: 15px; margin: 0 0 8px; }
+.scope { margin: 4px 0 10px; color: #555; }
+.actions { display: flex; gap: 12px; align-items: center; }
+button.small { font-size: 12px; }
+main { padding: 16px 20px; display: grid; gap: 16px; }
+section { border: 1px solid #aaa; padding: 12px 14px; overflow-x: auto; }
+.cols { display: grid; grid-template-columns: minmax(260px, 1fr) 2fr; gap: 16px; }
+.cols section { margin: 0; }
+@media (max-width: 800px) { .cols { grid-template-columns: 1fr; } }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+td.mono, .mono { font-family: Consolas, monospace; font-size: 12px; word-break: break-all; }
+.list, .errors { list-style: none; margin: 0; padding: 0; }
+.list li { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px solid #ddd; }
+.list small { display: block; color: #555; }
+.errors li { color: #b00020; }
+.detected { color: #1b7a2b; }
+.gap { color: #b00020; }
+.not_run, .rule_only { color: #666; }
+.fired { color: #1b7a2b; }
+#summary { display: flex; gap: 24px; flex-wrap: wrap; }
+#summary div b { display: block; font-size: 22px; }
+#summary div span { color: #555; }
