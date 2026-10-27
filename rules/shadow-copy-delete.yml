@@ -1,0 +1,20 @@
+title: Volume shadow copies deleted
+id: pr-0007
+level: critical
+tags:
+  - attack.impact
+  - attack.t1490
+logsource:
+  category: process_creation
+detection:
+  vssadmin:
+    Image|endswith: '\vssadmin.exe'
+    CommandLine|contains|all:
+      - 'delete'
+      - 'shadows'
+  wmic:
+    Image|endswith: '\wmic.exe'
+    CommandLine|contains|all:
+      - 'shadowcopy'
+      - 'delete'
+  condition: 1 of vssadmin or wmic

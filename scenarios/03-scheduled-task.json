@@ -1,0 +1,29 @@
+{
+  "id": "scheduled-task",
+  "name": "Persistence via scheduled task",
+  "description": "User-context schtasks creation, then the same from SYSTEM (expected to be filtered).",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1053.005",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\schtasks.exe",
+        "CommandLine": "schtasks /create /tn Updater /tr C:\\Users\\Public\\u.exe /sc onlogon",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 1500,
+      "category": "process_creation",
+      "technique": "T1053.005",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\schtasks.exe",
+        "CommandLine": "schtasks /create /tn SysCheck /tr C:\\Windows\\check.exe /sc daily",
+        "ParentImage": "C:\\Windows\\System32\\services.exe",
+        "User": "NT AUTHORITY\\SYSTEM"
+      }
+    }
+  ]
+}

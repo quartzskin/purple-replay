@@ -1,0 +1,17 @@
+{
+  "id": "run-key",
+  "name": "Run key persistence",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1547.001",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\reg.exe",
+        "CommandLine": "reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Updater /t REG_SZ /d C:\\Users\\Public\\u.exe",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

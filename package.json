@@ -1,0 +1,14 @@
+{
+  "name": "purple-replay",
+  "version": "0.1.0",
+  "description": "Replay simulated event sequences against Sigma-style rules and see ATT&CK detection coverage",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node src/server.js",
+    "report": "node src/cli.js",
+    "test": "node --test"
+  }
+}

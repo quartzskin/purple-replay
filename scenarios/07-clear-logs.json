@@ -1,0 +1,27 @@
+{
+  "id": "clear-logs",
+  "name": "Event log clearing",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1070.001",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\wevtutil.exe",
+        "CommandLine": "wevtutil.exe cl Security",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 600,
+      "category": "eventlog",
+      "technique": "T1070.001",
+      "fields": {
+        "EventID": 1102,
+        "Channel": "Security",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+title: Suspicious process access to lsass
+id: pr-0005
+level: high
+tags:
+  - attack.credential_access
+  - attack.t1003.001
+logsource:
+  category: process_access
+detection:
+  selection:
+    TargetImage|endswith: '\lsass.exe'
+    GrantedAccess|contains:
+      - '0x1010'
+      - '0x1410'
+      - '0x1fffff'
+  filter_av:
+    SourceImage|endswith: '\MsMpEng.exe'
+  condition: selection and not filter_av

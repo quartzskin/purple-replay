@@ -1,0 +1,15 @@
+title: rundll32 running script content
+id: pr-0011
+level: high
+tags:
+  - attack.defense_evasion
+  - attack.t1218.011
+logsource:
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\rundll32.exe'
+    CommandLine|contains:
+      - 'javascript:'
+      - 'mshtml,RunHTMLApplication'
+  condition: selection

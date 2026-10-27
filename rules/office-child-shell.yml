@@ -1,0 +1,20 @@
+title: Office application spawned a shell
+id: pr-0009
+level: high
+tags:
+  - attack.execution
+  - attack.t1204.002
+logsource:
+  category: process_creation
+detection:
+  parent:
+    ParentImage|endswith:
+      - '\winword.exe'
+      - '\excel.exe'
+      - '\powerpnt.exe'
+  child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\wscript.exe'
+  condition: parent and child

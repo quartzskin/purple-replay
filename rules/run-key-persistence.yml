@@ -1,0 +1,15 @@
+title: Run key added through reg.exe
+id: pr-0004
+level: medium
+tags:
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\reg.exe'
+    CommandLine|contains|all:
+      - ' add '
+      - '\CurrentVersion\Run'
+  condition: selection

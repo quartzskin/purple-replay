@@ -1,0 +1,17 @@
+title: Local account created with net.exe
+id: pr-0012
+level: medium
+tags:
+  - attack.persistence
+  - attack.t1136.001
+logsource:
+  category: process_creation
+detection:
+  selection:
+    Image|endswith:
+      - '\net.exe'
+      - '\net1.exe'
+    CommandLine|contains|all:
+      - ' user '
+      - ' /add'
+  condition: selection

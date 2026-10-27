@@ -1,0 +1,23 @@
+title: PowerShell download cradle
+id: pr-0002
+description: In-memory download and execute pattern in a PowerShell command line
+level: high
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.t1105
+logsource:
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\powershell.exe'
+  cradle:
+    CommandLine|contains:
+      - 'DownloadString('
+      - 'DownloadFile('
+      - 'Net.WebClient'
+  exec:
+    CommandLine|contains:
+      - 'iex'
+      - 'Invoke-Expression'
+  condition: selection and cradle and exec

@@ -1,0 +1,40 @@
+{
+  "id": "ransomware-prep",
+  "name": "Backup destruction",
+  "description": "Shadow copy removal two ways.",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1490",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\vssadmin.exe",
+        "CommandLine": "vssadmin delete shadows /all /quiet",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 1100,
+      "category": "process_creation",
+      "technique": "T1490",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\wbem\\WMIC.exe",
+        "CommandLine": "wmic shadowcopy delete",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 2300,
+      "category": "process_creation",
+      "technique": "T1490",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\bcdedit.exe",
+        "CommandLine": "bcdedit /set {default} recoveryenabled no",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

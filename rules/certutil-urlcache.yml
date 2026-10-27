@@ -1,0 +1,15 @@
+title: certutil used to fetch a file
+id: pr-0008
+level: medium
+tags:
+  - attack.command_and_control
+  - attack.t1105
+logsource:
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\certutil.exe'
+    CommandLine|contains:
+      - '-urlcache'
+      - '-verifyctl'
+  condition: selection

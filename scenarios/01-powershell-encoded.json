@@ -1,0 +1,40 @@
+{
+  "id": "powershell-encoded",
+  "name": "Encoded PowerShell from a shell",
+  "description": "A cmd parent starts an encoded PowerShell command, followed by string-concatenation obfuscation.",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1059.001",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\cmd.exe",
+        "CommandLine": "cmd.exe /c echo start",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 1200,
+      "category": "process_creation",
+      "technique": "T1059.001",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -nop -w hidden -enc SQBFAFgAIAAoACcAbABhAGIAJwApAA==",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 2600,
+      "category": "process_creation",
+      "technique": "T1027",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -c \"$a='Inv'+'oke-Expr'+'ession'; Write-Output $a\"",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

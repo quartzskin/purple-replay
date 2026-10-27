@@ -1,0 +1,28 @@
+{
+  "id": "office-macro",
+  "name": "Office document spawns a shell",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1204.002",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\cmd.exe",
+        "CommandLine": "cmd.exe /c whoami",
+        "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 1000,
+      "category": "process_creation",
+      "technique": "T1204.002",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\cmd.exe",
+        "CommandLine": "cmd.exe /c dir",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

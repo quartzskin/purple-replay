@@ -1,0 +1,40 @@
+{
+  "id": "discovery-burst",
+  "name": "Host and account discovery",
+  "description": "Typical first-minute enumeration commands.",
+  "events": [
+    {
+      "offset_ms": 0,
+      "category": "process_creation",
+      "technique": "T1033",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\whoami.exe",
+        "CommandLine": "whoami /all",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 700,
+      "category": "process_creation",
+      "technique": "T1082",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\systeminfo.exe",
+        "CommandLine": "systeminfo",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    },
+    {
+      "offset_ms": 1400,
+      "category": "process_creation",
+      "technique": "T1087.001",
+      "fields": {
+        "Image": "C:\\Windows\\System32\\net.exe",
+        "CommandLine": "net user",
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "User": "LAB\\analyst"
+      }
+    }
+  ]
+}

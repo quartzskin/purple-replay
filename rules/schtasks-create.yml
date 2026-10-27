@@ -1,0 +1,15 @@
+title: Scheduled task created from the command line
+id: pr-0003
+level: medium
+tags:
+  - attack.persistence
+  - attack.t1053.005
+logsource:
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\schtasks.exe'
+    CommandLine|contains: '/create'
+  filter_system:
+    User: 'NT AUTHORITY\SYSTEM'
+  condition: selection and not filter_system
